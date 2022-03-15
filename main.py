@@ -10,7 +10,8 @@ IMAGES = {}
 def load_images():
     pieces = ["bR", "bN", "bB", "bQ", "bK", "bB", "bN", "bR","bp","wp","wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]
     for piece in pieces:
-        IMAGES[pieces] = p.transform.scale(p.image.load("images/"+piece+".png"), (SQ_SIZE, SQ_SIZE))
+        IMAGES[piece] = p.transform.scale(p.image.load("images/"+piece+".png"), (SQ_SIZE, SQ_SIZE))
+
 def main():
     p.init()
     screen = p.display.set_mode((WIDTH, HEIGHT))
@@ -31,7 +32,7 @@ def main():
 
 def draw_game_state(screen, gs):
     draw_board(screen)
-    draw_pieces(screen, gs)
+    draw_pieces(screen, gs.board)
 
 def draw_board(screen):
     colors = [p.Color("white"), p.Color("gray")]
@@ -41,7 +42,12 @@ def draw_board(screen):
             p.draw.rect(screen, color, p.Rect(c*SQ_SIZE, r*SQ_SIZE, SQ_SIZE, SQ_SIZE))
 
 def draw_pieces(screen, board):
-    pass
+    for r in range(DIMENSION):
+        for c in range(DIMENSION):
+            piece = board[r][c]
+            if piece != "--":
+                screen.blit(IMAGES[piece], p.Rect(c*SQ_SIZE, r*SQ_SIZE, SQ_SIZE, SQ_SIZE))
+
 
 
 if __name__ == '__main__':

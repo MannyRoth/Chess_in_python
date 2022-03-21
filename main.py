@@ -20,40 +20,48 @@ def main():
     gs = ChessEngine.GameState()
     validMoves = gs.getValidMoves()
     moveMade = False
-
     gs.board
     load_images()
     running = True
     sqSelected = () #keep track of last click
     playerClicks = [] #keep track of player clicks
+    
     while running:
         for e in p.event.get():
             if e.type == p.quit:
                 running = False
+
             elif e.type == p.MOUSEBUTTONDOWN:
                 location = p.mouse.get_pos() #location of mouse(x,y)
                 col = location[0]//SQ_SIZE
                 row = location[1]//SQ_SIZE
+
                 if sqSelected == (row, col): #selcted same spot twice
                     sqSelected = () 
                     playerClicks = []
+
                 else:
                     sqSelected = (row, col)
                     playerClicks.append(sqSelected)
+
                 if len(playerClicks) == 2:
                     move = ChessEngine.Move(playerClicks[0], playerClicks[1], gs.board)
                     print(move.getChessNotation())
+
                     if move in validMoves:
-                        gs.moveMade = True
-                    gs.makeMove(move)
+                        gs.makeMove(move)
+                        moveMade = True
+                    
                     sqSelected = ()
                     playerClicks = []
+
             elif e.type == p.KEYDOWN:
                 if e.key == p.K_z:
                     gs.undoMove()
                     moveMade = True
+                    
         if moveMade:
-            validMoves = gs.getValidMoves
+            validMoves = gs.getValidMoves()
             moveMade = False
 
         draw_game_state(screen, gs)

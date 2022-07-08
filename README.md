@@ -13,7 +13,7 @@ This is a simple app that creates a game board and alllows the use to play Chess
 I originally wanted to develop this into a a version of Chess that would be a mini-game
 to find the best move during a game and give players a score as to "how accurate" their 
 moe was according to something like StockFish(Chess A.I.). Other Projects took up my time
-but I still think this shows my understaning of simple python ideas.
+but I still think this shows my understanding of simple python ideas.
 
 
 ## Lessons Learned

@@ -1,6 +1,4 @@
 # Chess_in_python
-
-# Project Title
 Chess created in PyGame
 
 ## Lessons Learned

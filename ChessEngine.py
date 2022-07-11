@@ -33,45 +33,45 @@ class GameState():
             self.whiteToMove = not self.whiteToMove
 
 
-    def getValidMoves(self):
-        return self.getAllPossibleMoves()
+    # def getValidMoves(self):
+    #     return self.getAllPossibleMoves()
         
     
 
-    def getAllPossibleMoves(self):
-        moves = []
-        for r in range(len(self.board)):
-            for c in range(len(self.board[r])):
-                turn = self.board[r][c][0]
-                if (turn == 'w' and self.whiteToMove) or  (turn == 'b' and not self.whiteToMove):
-                    piece = self.board[r][c][1]
-                    if piece == 'p':
-                        self.getPawnMoves(r,c,moves)
-                    elif piece == 'R':
-                        self.getRookMoves(r,c,moves)
-        return moves
+    # def getAllPossibleMoves(self):
+    #     moves = []
+    #     for r in range(len(self.board)):
+    #         for c in range(len(self.board[r])):
+    #             turn = self.board[r][c][0]
+    #             if (turn == 'w' and self.whiteToMove) or  (turn == 'b' and not self.whiteToMove):
+    #                 piece = self.board[r][c][1]
+    #                 if piece == 'p':
+    #                     self.getPawnMoves(r,c,moves)
+    #                 elif piece == 'R':
+    #                     self.getRookMoves(r,c,moves)
+    #     return moves
 
 
-    def getPawnMoves(self, r, c, moves):
-        if self.whiteToMove:
-            if self.board[r-1][c] == "--":
-                moves.append(Move((r, c), (r-1, c), self.board))
-                if r == 6 and self.board[r-2][c] == "--":
-                    moves.append(Move((r, c), (r-2, c), self.board))
-                if c-1 >= 0:
-                    if self.board[r-1][c-1][0] == "b":
-                        moves.append(Move((r, c), (r-1, c-1), self.board))
-                if c+1 <= 7:
-                    if self.board[r-1][c+1][0]=="b":
-                        moves.append(Move((r, c), (r-1, c+1), self.board))
+    # def getPawnMoves(self, r, c, moves):
+    #     if self.whiteToMove:
+    #         if self.board[r-1][c] == "--":
+    #             moves.append(Move((r, c), (r-1, c), self.board))
+    #             if r == 6 and self.board[r-2][c] == "--":
+    #                 moves.append(Move((r, c), (r-2, c), self.board))
+    #             if c-1 >= 0:
+    #                 if self.board[r-1][c-1][0] == "b":
+    #                     moves.append(Move((r, c), (r-1, c-1), self.board))
+    #             if c+1 <= 7:
+    #                 if self.board[r-1][c+1][0]=="b":
+    #                     moves.append(Move((r, c), (r-1, c+1), self.board))
 
                         
 
 
 
 
-    def getRookMoves(self, r, c, moves):
-        pass
+    # def getRookMoves(self, r, c, moves):
+    #     pass
 
         
 class Move():

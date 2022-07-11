@@ -18,7 +18,7 @@ def main():
     clock = p.time.Clock()
     screen.fill(p.Color("white"))
     gs = ChessEngine.GameState()
-    validMoves = gs.getValidMoves()
+    # validMoves = gs.getValidMoves()
     moveMade = False
     gs.board
     load_images()
@@ -35,23 +35,16 @@ def main():
                 location = p.mouse.get_pos() #location of mouse(x,y)
                 col = location[0]//SQ_SIZE
                 row = location[1]//SQ_SIZE
-
                 if sqSelected == (row, col): #selcted same spot twice
                     sqSelected = () 
                     playerClicks = []
-
                 else:
                     sqSelected = (row, col)
                     playerClicks.append(sqSelected)
-
                 if len(playerClicks) == 2:
                     move = ChessEngine.Move(playerClicks[0], playerClicks[1], gs.board)
                     print(move.getChessNotation())
-
-                    if move in validMoves:
-                        gs.makeMove(move)
-                        moveMade = True
-                    
+                    gs.makeMove(move)
                     sqSelected = ()
                     playerClicks = []
 
@@ -60,13 +53,15 @@ def main():
                     gs.undoMove()
                     moveMade = True
                     
-        if moveMade:
-            validMoves = gs.getValidMoves()
-            moveMade = False
+        # if moveMade:
+        #     # validMoves = gs.getValidMoves()
+        #     moveMade = False
 
         draw_game_state(screen, gs)
         clock.tick(MAX_FPS)
         p.display.flip()
+        moveMade = False
+
 
 
 def draw_game_state(screen, gs):
